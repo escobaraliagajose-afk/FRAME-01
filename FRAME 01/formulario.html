@@ -1,0 +1,75 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>suscripcion</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="cuerpo-suscripcion">
+
+    <section id="suscripcion" class="modal-suscripcion">
+        <div class="formulario-contenido" id="formulario-contenido">
+            <!-- Botón para regresar al inicio -->
+            <a href="MIPAGINA.html" class="cerrar-formulario">×</a>
+
+            <p class="etiqueta-formulario">Suscripciones</p>
+            <h2>Para recibir actualizaciones y novedades en el futuro</h2>
+            <p>Recibe novedades sobre cine, fotografía y Diseño grafico.</p>
+
+            <form onsubmit="enviarFormulario(event)">
+                <label for="nombre">Nombre</label>
+                <input id="nombre" type="text">
+
+                <label for="apellido">Apellido</label>
+                <input id="apellido" type="text">
+
+                <label for="telefono">Número telefónico</label>
+                <input id="telefono" type="tel">
+
+                <label for="correo">Correo electrónico</label>
+                <input id="correo" type="email">
+
+                <label for="pais">País de residencia</label>
+                <input id="pais" type="text">
+
+                <button type="submit" class="enviar-formulario">
+                    Enviar suscripción ?
+                </button>
+            </form>
+        </div>
+
+        <div id="pantalla-azul" class="pantalla-azul oculto">
+            <p>:(</p>
+            <h2>ERROR 505</h2>
+            <p>No se pudo completar la solicitud.</p>
+            <p>Faltan datos. Comprueba todos los campos e inténtalo de nuevo.</p>
+            <button onclick="volverFormulario()">VOLVER AL FORMULARIO</button>
+        </div>
+    </section>
+
+    <script>
+    function enviarFormulario(event) {
+        event.preventDefault();
+
+        const campos = ["nombre", "apellido", "telefono", "correo", "pais"];
+
+        const vacio = campos.some(function(id) {
+            return document.getElementById(id).value.trim() === "";
+        });
+
+        if (vacio) {
+            document.getElementById("formulario-contenido").classList.add("oculto");
+            document.getElementById("pantalla-azul").classList.remove("oculto");
+        } else {
+            alert("¡Suscripción enviada con éxito!");
+            event.target.reset();
+            window.location.href = "index.html"; 
+        }
+    }
+
+    function volverFormulario() {
+        document.getElementById("pantalla-azul").classList.add("oculto");
+        document.getElementById("formulario-contenido").classList.remove("oculto");
+    }
+    </script>
+</body>
+</html>
