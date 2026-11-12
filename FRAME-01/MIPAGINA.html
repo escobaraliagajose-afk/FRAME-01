@@ -1,0 +1,158 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>FRAME 01</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header class="barra">
+       <h1 class="titulo">
+    <img src="logo.png" alt="FRAME 01">
+</h1>
+
+        <nav class="navegacion">
+            <a href="#" onclick="abrirAcerca(event)">Acerca de</a>
+            <div id="ventanaAcerca" class="ventana-acerca">
+    <div class="contenido-acerca">
+        <h2>ACERCA DE ESTE ESPACIO</h2>
+
+        <p>
+            Este es mi pequeño espacio personal dedicado a compartir
+            mis intereses, ideas y descubrimientos. Un lugar donde
+            el cine, la música, la fotografía y el diseño se encuentran
+            para dar forma a distintas formas de expresión.
+
+            No pretende ser una revista ni un estudio profesional,
+            sino una colección de cosas que me inspiran y proyectos
+            que forman parte de mi camino creativo.
+        </p>
+
+        <button onclick="cerrarAcerca()">Cerrar</button>
+    </div>
+</div>
+
+<script>
+function abrirAcerca(event) {
+    event.preventDefault();
+    document.getElementById("ventanaAcerca").style.display = "flex";
+}
+
+function cerrarAcerca() {
+    document.getElementById("ventanaAcerca").style.display = "none";
+}
+</script>
+            <div class="desplegable">
+                <a href="#">Redes</a>
+
+                
+<div class="opciones">
+    <a href="https://boxd.it/6YzQh" target="_blank" rel="noopener noreferrer">Letterboxd</a>
+
+    <a href="https://www.instagram.com/sftparanoia/" target="_blank" rel="noopener noreferrer">Instagram</a>
+
+    <a href="https://wa.me/59175214067" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+</div>
+    
+            </div>
+        </nav>
+    </header>
+<section class="video-cine" id="videoCine">
+    <video autoplay muted loop playsinline>
+        <source src="cinema.mp4" type="video/mp4">
+    </video>
+</section>
+    <main>
+        <section class="presentacion" id="acerca">
+            <p class="etiqueta">VLOG PERSONAL</p>
+            <h2>Imagenes que cuentan historias...</h2>
+            <p class="descripcion">
+                Cine, fotografía y diseño desde otra perspectiva.
+            </p>
+        </section>
+
+        <section class="galeria" id="galeria">
+            <a href="cine.html" class="card card-principal">
+                <img class="marty" src="marty.jpg" alt="Cine">
+                <div class="card-texto">
+                    <p>CINE</p>
+                    <h3>Mis peliculas favoritas</h3>
+                    <span>Películas, directores mis escenas favoritas.</span>
+                </div>
+            </a>
+<a href="carrusel.html" target="_blank" class="card">
+    <img class="Shai" src="Shai.jpg" alt="Fotografía">
+    <div class="card-texto">
+        <p>Fotografia</p>
+        <h3>Momentos congelados en el tiempo</h3>
+        <span>Solo fotografias.</span>
+    </div>
+</a> 
+            <a href="diseno.html" class="card">  
+                <img class="Toky" src="Instagram.jpg" alt="Diseño">
+                <div class="card-texto">
+                    <p>Diseño grafico  y comunicacion visual</p>
+                    <h3>Ideas que se imprimen</h3>
+                    <span>Papeleria, Pósteres, tipografía y otros.</span>
+                </div>
+            </a>
+            <a href="musica.html" class="card">
+    <img class="Tp" src="descarga.jpg" alt="Musica que realmente aprecio">
+    <div class="card-texto">
+         <p>Temas variados</p>
+         <h3>Música</h3>
+        <span>Musica que pues...me gusta</span>
+    </div>
+</a>
+
+        </section>
+    </main>
+
+    <footer>
+        ®MI PAGINA-ITDB-SISTEMAS-2026
+    </footer>
+
+    <!-- Botón flotante que ahora redirige a la nueva página -->
+    <a href="formulario.html" class="boton-suscribir">
+        Suscribirse 
+    </a>
+
+
+<script>
+// --- CÓDIGO NUEVO PARA EL CARRUSEL ---
+let indiceActual = 0;
+let intervaloCarrusel;
+
+function mostrarGaleria() {
+    // Muestra la galería quitando la clase oculto
+    document.getElementById("mi-galeria").classList.remove("oculto");
+    
+    // Evita que se dupliquen los tiempos si hacen muchos clicks
+    clearInterval(intervaloCarrusel); 
+    
+    // Cambia la imagen automáticamente cada 3000ms (3 segundos)
+    intervaloCarrusel = setInterval(cambiarImagen, 3000);
+}
+
+function cambiarImagen() {
+    const fotos = document.querySelectorAll(".foto-carrusel");
+    fotos[indiceActual].classList.remove("activa");
+    indiceActual = (indiceActual + 1) % fotos.length;
+    fotos[indiceActual].classList.add("activa");
+}
+
+
+// --- CÓDIGO DEL VIDEO ---
+window.addEventListener("scroll", function() {
+    const video = document.getElementById("videoCine");
+    const inicio = 50;
+    const final = 450;
+
+    let progreso = (window.scrollY - inicio) / (final - inicio);
+    progreso = Math.max(0, Math.min(1, progreso));
+
+    video.style.opacity = 1 - progreso;
+});
+</script>
+</body>
+</html>
